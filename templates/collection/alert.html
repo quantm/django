@@ -1,0 +1,18 @@
+{% load compress %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>{% trans header_text  %}</h3>
+</div>
+<form action="{{ url }}" method="get" class="form-horizontal">
+            {% csrf_token %}
+<div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">{% trans "Cancel" %}</a>
+    <button type="{{ type }}" id="btn_delete_collection" data-dismiss="{{modal}}"  class="btn btn-primary">{% trans btn_text %}</button>
+</div>
+    <input type="hidden" name="set_id" id="set_id" value={{collection_id}}>
+    <input type="hidden" name="mode" id="mode" value="delete">
+</form>

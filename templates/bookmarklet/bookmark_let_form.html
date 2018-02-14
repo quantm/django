@@ -1,0 +1,72 @@
+{% load url from future %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{{ page_title }}</title>
+	<link type="text/css" href="{{ BOOKMARKLET_CSS_FILE }}" rel="stylesheet" />
+    <script src="{{ STATIC_JS_URL }}jquery.js"></script>
+    <script src="{{ STATIC_JS_URL }}typeahead.js"></script>
+    <link href="{{ STATIC_URL }}css/typeahead_bootstrap.css" type="text/css" media="screen" rel="stylesheet"/>
+</head>
+<body>
+	<div align="center">
+		<div style="width:100%" class="contains">
+			<form id="product-ajax-form" action="{% url 'bookmark-let-post-link' %}" method="post" enctype="multipart/form-data">
+				<div class="header">
+					<span class="logo"><a href="#" class="logo"><img style="height:38px; width:auto" src="http://django-oscar.readthedocs.org/en/latest/_images/oscar.png"></a></span>
+					<span></span>
+					<span class="close"><a href="#" class="close_box"><img src="//s3.amazonaws.com/thefancy/_ui/bookmarklet/f-x.png"></a></span>
+				</div>
+				<div class="content">
+					<div class="form-content">
+						{% csrf_token %}
+						<div class="image-preview">
+							<img class="f-preview" name="previewer" id="f-picked-image" src="" alt="">
+							<div id="f-imgpick">
+								<a href="#" did="0" class="img-pick disabled ctrl-left"><img src="//s3.amazonaws.com/thefancy/_ui/bookmarklet/f-left.png"></a>
+								<a href="#" did="1" class="img-pick disabled ctrl-right"><img src="//s3.amazonaws.com/thefancy/_ui/bookmarklet/f-right.png"></a>
+							</div>
+							<input type="hidden" name="f-tag_url" id="f-tag_url" value="">
+                            <span class="caption-text" id="caption"></span>
+						</div>
+	
+						{% for field in frm_bookmark_let %}
+							<div class="fieldWrapper field_{{ field.id_for_label }}" id="{{ field.id_for_label }}_wrapper">
+								<p class="field-errors">
+                                    {{ field.errors }}
+                                </p>
+								<div class="field-container">{{ field }}</div>
+							</div>
+						{% endfor %}				
+					</div>
+					<div class="message-content" style="display:none">
+						<p class="message"></p>
+						<p class="btn-finished"></p>
+                        <p class="btn-come-back"><span id="btn_come_back" class="f-button">Add more Products</span></p>
+					</div>
+				</div>
+				<div class="footer">					
+					<p class="submit-button">
+						{% if user.is_authenticated %}
+							<input type="submit" id="submit" value="Send" />
+						{% else %}
+							<a target="_blank" href="/accounts/login?close" class="f-button close">Send</a>
+						{% endif %}
+					</p>
+					<div id="message"></div>
+				</div>
+			</form>
+		</div>
+	</div>
+    <script src="{{ BOOKMARKLET_SAVE_FILE }}"></script>
+    <script type="text/javascript">
+                $(document).ready(function(){
+                     var autocomplete = [{% for user_hashtag in user %}"{{user_hashtag.get_full_name}}",{% endfor %}]
+                     $("#id_description").typeahead({
+                         prefetch:'/social/getuser/'
+                     })
+                })
+    </script>
+</body>
+</html>

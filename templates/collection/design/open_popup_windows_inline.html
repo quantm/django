@@ -1,0 +1,57 @@
+{% load i18n %}
+{# Using for open collections ---------------- #}
+<div class="collections-opening modal hide fade" id="collections_dialog">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>{% trans "Your collection items" %}</h3>
+    </div>
+    <div class="box-content">
+    </div>
+</div>
+{# ------------------------------------------- #}
+{# Using for show message when saved --------- #}
+<div class="modal hide fade" id="collection_modal_message">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>{% trans "Message" %}</h3>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">{% trans "Close" %}</a>
+    </div>
+</div>
+{# ------------------------------------------- #}
+{# Using for show message when not already saved --------- #}
+<div class="modal hide fade" id="collection_modal_message_confirm">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>{% trans "Confirmation" %}</h3>
+    </div>
+    <div class="modal-body">
+        <h2 class="question">Do you want to save before viewing ?</h2>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal" id="no">{% trans "No" %}</a>
+        <button id="yes-btn" class="btn btn-primary">{% trans "Yes" %}</button>
+    </div>
+</div>
+{# ------------------------------------------- #}
+{# form save collection before to view --------- #}
+<div class="modal hide fade collection-form" id="collection_view_save">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>{% trans "Save your collection" %}</h3>
+    </div>
+    <div class="modal-body collection-form">
+        {% csrf_token %}
+        <div class="control-group ">
+            <label class="control-label">Collection name:</label>
+            <div class="controls">
+                <input type="text" name="view_id_name" id="view_id_name" value="{{ current_collection.name }}">
+            </div>
+            <button type="submit" name="view_save_collection_btn" id="view_save_collection_btn" class="btn btn-primary">{% trans "Save" %}</button>
+        </div>
+    </div>
+</div>
+{# ------------------------------------------- #}

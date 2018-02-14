@@ -1,0 +1,15 @@
+===============================================================
+SETTING INFORMATION FOR BOOKMARKLET AND WATERMARK (Add anywhere function)
+================================================================
+
+- set SITE_ID = 1 in settings.py
+- setting the site has id = 1 such as:
+	+ Domain name: don't include http://
+	+ Display name: include http://
+	+ Ex:
+		+ Domain name: localhost:8000
+		+ Display name: http://localhost:8000
+- Set info below in settings.py file
+	+ INIT_BOOKMARKLET_FILE = STATIC_URL + 'js/bookmarklet.js'
+	+ BOOKMARKLET_CSS_FILE = STATIC_URL + 'css/bookmarklet.css'
+	+ BOOKMARKLET_SAVE_FILE = STATIC_URL + 'js/actions.js'

@@ -1,0 +1,13 @@
+
+{% load compress %}
+{% load collection_tags %}
+	<script src="{{ STATIC_URL }}js/jquery-ui.js"></script>
+	<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" media="screen" rel="stylesheet"/>
+	<script src="{{ STATIC_URL }}js/jquery.ui.rotatable.js"></script>
+<span style="display:{{display}}"><h4>Products matching with keyword <font color=red>"{{ search }}"</font></h4></span>							
+{% for products in result %}
+						 	<div  onmouseover=load_action(this.id) class="product" id="product_search_{{products.id}}">
+								{% render_collection products %}
+							</div>
+                            <div class='product_search_wrapper' id="product_{{products.id}}_wrapper_search_cloned"></div>
+{% endfor %}

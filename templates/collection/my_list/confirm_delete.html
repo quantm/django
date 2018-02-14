@@ -1,0 +1,13 @@
+{% extends "customer/baseaccountpage.html" %}
+
+{% load url from future %}
+{% load product_tags %}
+{% load i18n %}
+{% load staticfiles %}
+
+{% block tabcontent %}
+    <form action="" method="post">{% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input type="submit" value="Confirm" />
+    </form>
+{% endblock tabcontent %}

@@ -1,0 +1,31 @@
+{% load i18n %}
+{% load get_item %}
+<legend>{% trans 'My' %} {{ form_name }}</legend>
+<link href="{{ STATIC_URL }}css/form_of_add_product_modal.css" type="text/css" media="screen" rel="stylesheet"/>
+<form action="" method="post" enctype="multipart/form-data" id="ask_before_add_product_form">
+    {% csrf_token %}
+    <input type="hidden" value="{{ product_id }}" id="product_id" name="product_id" />
+    <div class="control-group ">
+        {% if collections %}
+            <div class="input-prepend input-append">
+                <span class="add-on"> {% trans 'Add to' %} </span>
+                <div class="btn-group">
+                    <select id="my_collections" class="collections">
+
+                    {% for collection in collections %}
+                        <option value="{{ collection.id }}">{{ collection.name }}</option>
+                    {% endfor %}
+                    </select>
+
+                </div>
+                <button type="button" class="btn action" id="add_btn" value="add">{% trans 'Add' %}</button>
+            </div>
+            <p>{% trans 'or' %}</p>
+        {% endif %}
+        <div class="input-prepend input-append">
+            <span class="add-on">{% trans 'New a ' %} {{ form_name }}: </span>
+            <input class="span2" id="collection_name" type="text" placeholder="{{ form_name }} {% trans 'name ' %}">
+            <button type="button" class="btn action" id="create_btn" value="create">{% trans 'Create ' %}</button>
+        </div>
+    </div>
+</form>

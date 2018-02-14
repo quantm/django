@@ -1,0 +1,34 @@
+{% load i18n %}
+<footer class="footer container-fluid">
+    {% block footer %}
+        {% comment %}
+            Could be used for displaying links to privacy policy, terms of service, etc.
+            We have a CSS class defined:
+                <ul class="footer_links">
+                    ...
+                </ul>
+         {% endcomment %}
+    {% endblock %}
+</footer>
+<div id="fb-root"></div>
+<!-- USE 'Asynchronous Loading' version, for IE8 to work
+http://developers.facebook.com/docs/reference/javascript/FB.init/ -->
+<script>
+  /*
+  window.fbAsyncInit = function() {
+    FB.init({
+        appId  : '1425390581023345',
+        status : true, // check login status
+        cookie : true, // enable cookies to allow the server to access the session
+        xfbml  : true  // parse XFBML
+    });
+  };
+
+  (function() {
+    var e = document.createElement('script');
+    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+    e.async = true;
+    document.getElementById('fb-root').appendChild(e);
+  }());
+  */
+</script>

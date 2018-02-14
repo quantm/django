@@ -1,0 +1,8 @@
+{% with len=arr_length %}
+ [
+    {% for user_hashtag in user %}
+            "{{ user_hashtag.get_full_name }}"{% if len > forloop.counter %},{% endif %}
+    {% endfor %}
+ ]
+{% endwith %}
+

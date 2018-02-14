@@ -1,0 +1,18 @@
+{% load i18n %}
+<div class="modal hide fade" id="collection_modal_save">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>{% trans "Save your collection" %}</h3>
+    </div>
+    <form action="/collection/save/" method="post" enctype="multipart/form-data" id="collection_form" class="collection-form">
+        <input type="hidden" name="status" id="status" value="p">
+        <div class="modal-body">
+            {% csrf_token %}
+            <div class="control-group ">
+                <label class="control-label">Collection name:</label>
+                <div class="controls"><input type="text" name="name" id="id_name" value="{{ current_collection.name }}"></div>
+                <button type="submit" name="save_collection_btn" id="save_collection_btn" class="btn btn-primary">{% trans "Save" %}</button>
+            </div>
+        </div>
+    </form>
+</div>

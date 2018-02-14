@@ -1,0 +1,32 @@
+{% load i18n %}
+<div class="modal hide fade" id="ask_before_add_product_modal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>{% trans "This product will be add to" %}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="control-group">
+            <label class="radio">
+              <input type="radio" name="optionsRadios" id="optionsRadios1" value="l" checked="checked">
+              {% trans "Add this product to My Lists" %}
+            </label>
+            <label class="radio">
+              <input type="radio" name="optionsRadios" id="optionsRadios2" value="c">
+              {% trans "Add this product to My Collection list" %}
+            </label>
+        </div>
+        <fieldset>
+            {# form content #}
+        </fieldset>
+    </div>
+</div>
+<div class="modal hide fade" id="add_product_modal_message">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>{% trans "Message" %}</h3>
+    </div>
+    <div class="modal-body"></div>
+    <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">{% trans "Close" %}</a>
+    </div>
+</div>

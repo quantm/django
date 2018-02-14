@@ -1,0 +1,27 @@
+{% load i18n %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load replace %}
+
+
+{% if collection_items %}
+    {% csrf_token %}
+    {% for item in collection_items %}
+        <div id="past_dropped_{{ item.id }}" class="{{ item.class_name }}" style="{{ item.style|replace:"\:" }}">
+            <div class="image_collection" style="height: 100%; width: 100%;">
+                {% with image=item.product.primary_image %}
+                    {% thumbnail image.none_watermark "x800" upscale=False as thumb %}
+                        <img src="{% static thumb.url %}"
+                             alt="{{ item.product.title }}"
+                             title="{{ item.product.title }}"
+                             class="collection_thumbnail view"
+                             style="display: block; width: 100%; height: 100%">
+                    {% endthumbnail %}
+                {% endwith %}
+            </div>
+            <input type="hidden" name="product[]" class="product-id-value" value="{{ item.product.id }}" />
+        </div>
+    {% endfor %}
+{% else %}
+    <p class="collection-empty">{% trans "Your collection is empty." %}</p>
+{% endif %}

@@ -1,0 +1,42 @@
+{% load compress %}
+{% load thumbnail %}
+{% load staticfiles %}
+
+{% for item in collection %}
+    <div name="item_list" data-toggle="popover" data-container="body" id="loaded_design_{{ item.product_id }}"  class="{{item.class_name}}" style="{{ item.style }}">
+        <div class="item_tooltip" id="tooltip_design_{{ item.product_id }}">
+                <table class="table_list_item">
+                    <tr>
+                        <td>
+                            {% with image=item.product.primary_image %}
+                            {% thumbnail image.none_watermark "x150" upscale=False as thumb %}
+                                <a href="{{item.product.get_absolute_url}}"  target="_new">
+                                    <img class='list_item_img' src="{% static thumb.url %}" title="{{ item.product.title }}">
+                                </a>
+                            {% endthumbnail %}
+                            {% endwith %}
+                        </td>
+                        <td>
+                            <ul>
+                                <li><a href="{{item.product.get_absolute_url}}" target="_new">{{ item.product.title }}</a></li>
+                                <li><span  class="price_color">125$</span></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+        <div  class="image_collection">
+            {% with image=item.product.primary_image %}
+                {% thumbnail image.none_watermark "x800" upscale=False as thumb %}
+                    <a href="{{item.product.get_absolute_url}}"  target="_new">
+                        <img src="{% static thumb.url %}"
+                             alt="{{ item.product.title }}"
+                             title="{{ item.product.title }}"
+                             class="collection_thumbnail view"
+                             style="display: inline-block; width: 100%; height: 100%; {% if collection_name.0.status == 'c' %}max-width: 172px;{% endif %}">
+                    </a>
+                {% endthumbnail %}
+            {% endwith %}
+        </div>
+    </div>
+{% endfor %}

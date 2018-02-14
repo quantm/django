@@ -1,0 +1,16 @@
+*.pyc
+settings_local.py
+media/cache/*
+media/images/*
+media/tmp/*
+media/upload/avatar/*
+media/categories/*
+.DS_Store
+.idea/*
+celerybeat.pid
+*.rar
+TASK LIST.docx
+Diagram.png
+*.pdf
+*.sql
+tmp

@@ -1,0 +1,40 @@
+{% load compress %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load i18n %}
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3>{% trans header_text  %}</h3>
+</div>
+
+<form action="{{ form_url }}" id="form_{{ type }}" method="post" class="form-horizontal">
+    {% csrf_token %}
+    <div class="modal-body">
+        {% for user in selected_user %}
+            <label class="child">
+                <input  type="checkbox" name="chk_{{type}}" value="{{ user.id }}"/>
+                      {{ user.get_full_name }}
+                <img class="comment_avartar" title="{{ user.get_full_name }}" onerror=no_avatar(this) src="/{{avatar_dir}}{{ user.id }}_avatar.png">
+            </label>
+        {% endfor %}
+    </div>
+
+    <div class="modal-footer">
+                    <a href="#" class="btn" data-dismiss="modal">{% trans "Cancel" %}</a>
+                    <button type="button" id="btn_{{ type }}" class="btn btn-primary">{% trans button_text %}</button>
+    </div>
+      <input type="hidden" name="set_id_share" id="set_id_share" value={{set_id}}>
+      <input type="hidden" name="user_share" id="user_share" value="{{user.id}}">
+</form>
+
+<script type="text/javascript">
+        function no_avatar(obj){
+            obj.src="/static/images/no_avatar.png"
+        }
+</script>
+
+
+
+
+
